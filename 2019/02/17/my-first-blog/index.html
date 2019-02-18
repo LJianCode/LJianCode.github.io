@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-atom.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1.Cousins in Binary Tree">
+<meta name="keywords" content="LeetCode Contest">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode Weekly Contest 124">
+<meta property="og:url" content="https://LJianCode.github.io/2019/02/17/my-first-blog/index.html">
+<meta property="og:site_name" content="LJian&#39;s Alogrithm Note">
+<meta property="og:description" content="1.Cousins in Binary Tree">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-18T05:13:19.607Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode Weekly Contest 124">
+<meta name="twitter:description" content="1.Cousins in Binary Tree">
+
+
+
+
+
+
+  <link rel="canonical" href="https://LJianCode.github.io/2019/02/17/my-first-blog/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>LeetCode Weekly Contest 124 | LJian's Alogrithm Note</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LJian's Alogrithm Note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://LJianCode.github.io/2019/02/17/my-first-blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LJian">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/my1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LJian's Alogrithm Note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LeetCode Weekly Contest 124
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-17 18:37:27" itemprop="dateCreated datePublished" datetime="2019-02-17T18:37:27+08:00">2019-02-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-18 13:13:19" itemprop="dateModified" datetime="2019-02-18T13:13:19+08:00">2019-02-18</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="1-Cousins-in-Binary-Tree"><a href="#1-Cousins-in-Binary-Tree" class="headerlink" title="1.Cousins in Binary Tree"></a>1.<a href="https://leetcode-cn.com/contest/weekly-contest-124/problems/cousins-in-binary-tree/" target="_blank" rel="noopener">Cousins in Binary Tree</a></h4><a id="more"></a>
+<h5 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h5><p> 我采用的是宽搜，所以代码较长。事后想到应该用深搜会简洁很多。</p>
+<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isCousins</span><span class="params">(TreeNode* root, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        pair&lt;TreeNode*,<span class="keyword">int</span>&gt; q[<span class="number">1000</span>];</span><br><span class="line">        <span class="keyword">int</span> fa[<span class="number">1000</span>]=&#123;<span class="number">-1</span>&#125;;<span class="keyword">int</span> head=<span class="number">0</span>,tail=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> hx=<span class="number">-1</span>,hy=<span class="number">-1</span>;<span class="keyword">int</span> fax=<span class="number">-1</span>,fay=<span class="number">-1</span>;</span><br><span class="line">        q[<span class="number">0</span>].first=root;q[<span class="number">0</span>].second=<span class="number">0</span>;fa[<span class="number">0</span>]=<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(head&lt;=tail)</span><br><span class="line">        &#123;</span><br><span class="line">            TreeNode *now=q[head].first;</span><br><span class="line">            <span class="keyword">if</span>(now-&gt;val==x)</span><br><span class="line">            &#123;</span><br><span class="line">                fax=fa[head];</span><br><span class="line">                hx=q[head].second;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(now-&gt;val==y)</span><br><span class="line">            &#123;</span><br><span class="line">                fay=fa[head];</span><br><span class="line">                hy=q[head].second;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(hx!=<span class="number">-1</span>&amp;&amp;hy==hx&amp;&amp;fax!=fay)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span>(now-&gt;left!=<span class="literal">NULL</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                ++tail;</span><br><span class="line">                q[tail].first=now-&gt;left;</span><br><span class="line">                q[tail].second=q[head].second+<span class="number">1</span>;</span><br><span class="line">                fa[tail]=now-&gt;val;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(now-&gt;right!=<span class="literal">NULL</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                ++tail;</span><br><span class="line">                q[tail].first=now-&gt;right;</span><br><span class="line">                q[tail].second=q[head].second+<span class="number">1</span>;</span><br><span class="line">                fa[tail]=now-&gt;val;</span><br><span class="line">            &#125;</span><br><span class="line">            head++;</span><br><span class="line">        &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="literal">false</span>; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="2-Rotting-Oranges"><a href="#2-Rotting-Oranges" class="headerlink" title="2.Rotting Oranges"></a>2.<a href="https://leetcode-cn.com/contest/weekly-contest-124/problems/rotting-oranges/" target="_blank" rel="noopener">Rotting Oranges</a></h4><h5 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h5><p> 依然是宽搜。</p>
+<h5 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">orangesRotting</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n=grid.size(),m=grid[<span class="number">0</span>].size();</span><br><span class="line">        <span class="keyword">int</span> now=<span class="number">0</span>,tot=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> qx[<span class="number">1000</span>],qy[<span class="number">1000</span>],qt[<span class="number">1000</span>];<span class="keyword">int</span> time=<span class="number">0</span>;<span class="comment">//开三个队列，分别记录坐标和时间</span></span><br><span class="line">        <span class="keyword">int</span> head=<span class="number">0</span>,tail=<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">int</span> dx[<span class="number">4</span>]=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">-1</span>&#125;,dy[<span class="number">4</span>]=&#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">-1</span>,<span class="number">0</span>&#125;;<span class="comment">//方向数组</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;m;++j)</span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">1</span>)</span><br><span class="line">                    ++tot;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(grid[i][j]==<span class="number">2</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    ++tot;++now;</span><br><span class="line">                    qx[++tail]=i;</span><br><span class="line">                    qy[tail]=j;</span><br><span class="line">                    qt[tail]=<span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">        <span class="keyword">while</span>(head&lt;=tail)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> x=qx[head],y=qy[head];</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">3</span>;++i)</span><br><span class="line">            &#123;</span><br><span class="line">                time=max(time,qt[head]);</span><br><span class="line">                <span class="keyword">if</span>(x+dx[i]&gt;=<span class="number">0</span>&amp;&amp;y+dy[i]&gt;=<span class="number">0</span>&amp;&amp;x+dx[i]&lt;n&amp;&amp;y+dy[i]&lt;m&amp;&amp;grid[x+dx[i]][y+dy[i]]==<span class="number">1</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    qx[++tail]=x+dx[i];</span><br><span class="line">                    qy[tail]=y+dy[i];</span><br><span class="line">                    qt[tail]=qt[head]+<span class="number">1</span>;</span><br><span class="line">                    grid[x+dx[i]][y+dy[i]]=<span class="number">2</span>;</span><br><span class="line">                    ++now;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ++head;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(now&lt;tot)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">return</span> time;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h5 id="3-Minimum-Number-of-K-Consecutive-Bit-Flips"><a href="#3-Minimum-Number-of-K-Consecutive-Bit-Flips" class="headerlink" title="3.Minimum Number of K Consecutive Bit Flips"></a>3.<a href="https://leetcode-cn.com/contest/weekly-contest-124/problems/minimum-number-of-k-consecutive-bit-flips/" target="_blank" rel="noopener">Minimum Number of K Consecutive Bit Flips</a></h5><h5 id="题解-2"><a href="#题解-2" class="headerlink" title="题解"></a>题解</h5><p>贪心+差分。我们把每一次翻面看做一次操作，并认为是从左至右按顺序进行的。由此可以知道每次都从最左边的0开始操作。为了不用每次都修改每一个翻面的硬币的值。我们只需要利用差分的思想在头和尾进行标记。now作为当前的硬币翻面次数。</p>
+<h5 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minKBitFlips</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A, <span class="keyword">int</span> K)</span> </span>&#123;</span><br><span class="line">    	<span class="keyword">int</span> n=A.size();<span class="keyword">int</span> now=<span class="number">0</span>;</span><br><span class="line">    	<span class="keyword">int</span> s[<span class="number">40000</span>]=&#123;<span class="number">0</span>&#125;;<span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">    	&#123;</span><br><span class="line">    		now+=s[i];</span><br><span class="line"></span><br><span class="line">    		<span class="keyword">if</span>(i&lt;=n-K&amp;&amp;(A[i]+now)%<span class="number">2</span>==<span class="number">0</span>)</span><br><span class="line">    		&#123;</span><br><span class="line">    			++ans;++now;</span><br><span class="line">    			++s[i];--s[i+K];</span><br><span class="line"></span><br><span class="line">    		&#125;</span><br><span class="line">    		A[i]+=now;</span><br><span class="line">    		A[i]%=<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">    		<span class="keyword">if</span>(A[i]==<span class="number">0</span>)</span><br><span class="line">    			<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    	<span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LeetCode-Contest/" rel="tag"># LeetCode Contest</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/17/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/my1.jpg" alt="LJian">
+            
+              <p class="site-author-name" itemprop="name">LJian</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/LJianCode" title="GitHub &rarr; https://github.com/LJianCode" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:vfenux483@gmail.com" title="E-Mail &rarr; mailto:vfenux483@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.baidu.com" title="http://www.baidu.com" rel="noopener" target="_blank">百度</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://leetcode.com" title="https://leetcode.com" rel="noopener" target="_blank">LeetCode</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Cousins-in-Binary-Tree"><span class="nav-number">1.</span> <span class="nav-text">1.Cousins in Binary Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题解"><span class="nav-number">1.1.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码"><span class="nav-number">1.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Rotting-Oranges"><span class="nav-number">2.</span> <span class="nav-text">2.Rotting Oranges</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题解-1"><span class="nav-number">2.1.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-1"><span class="nav-number">2.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-Minimum-Number-of-K-Consecutive-Bit-Flips"><span class="nav-number">2.3.</span> <span class="nav-text">3.Minimum Number of K Consecutive Bit Flips</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#题解-2"><span class="nav-number">2.4.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码-2"><span class="nav-number">2.5.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LJian</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
