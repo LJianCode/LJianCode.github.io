@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[天才的诞生]]></title>
+    <url>%2F2019%2F02%2F23%2Fn1%2F</url>
+    <content type="text"><![CDATA[一.一天夜晚 夜晚，梁碧月肚子痛得不行。恐怕是要生，张若志想送医院，却没有钱。只得找了一个当兽医的朋友，帮忙接生了。 在”手术室”外，张若志累晕了。醒来时，兽医朋友对他说:“恭喜。两个男孩子。 他十分高兴，但又十分悲痛。因为两个孩子，他们抚养不起。 二.灵 孩子百日了，却还没有名字。若志把大儿子取名精生，小儿取名中成。 一日，精生摆弄着家里的地唯一一台风扇。玩着玩着，“啪！” 风扇掉到了地上有些地方散了，精生并没有哭，而是动手把有些地方装好，有时候不够力就用脚踩。这一幕，张若志看见了，非常高兴。没有文化的他，只用“你太厉害了！”来形容。但是，这已经是他对别人最好的赞许了。 这是一个天才！ 三.大显身手 “这是什么？”六岁的中成说。“‘少儿制作大赛’？我们可以参加一下。” 说明上写着:5~10岁儿童可参加，无报名费，一等奖则奖金3000元。每人制作一份小制作家长只可以指导不能帮忙，可以两个儿童合作。于5月25日上交作品。 “这个不错，可以去试一试现在是五月3日。”张若志说。 次日早晨，兄弟俩去报名。 中午他们便开始思索制作的东西。 “陀螺？”中成开了个头。 “太简单了不行，必须要有电的。” “那——小汽车？” “再有难度些。” “小飞机？” “飞机做不出！那就做大汽车能开的，玩具大汽车。” 中成表示认可。 做这种汽车肯定要用电，精生在家画设计图中成去垃圾场找电动机。 五个小时过去了，精生的设计图翻了好几翻。中成还没回来。 晚上八点钟，设计图已经画好了，中成也回来了。 “这个电机不错。修理一下就能好了。”精生十分高兴。 第二天精生开始修理电动机，中成又去垃圾场寻找铁皮。 五个小时过去了，中午11点，电动机修好了，大片大片的铁皮也找来了。下午，精生在家里把铁皮做成汽车的样子，中成去垃圾场寻找木棍，方向盘，轮胎等东西。 5月15日一辆电动汽车做好了，还有十天，他们两个合伙把这辆车改造了一下，把原本的汽车改造成了又可以变成车又可以变成船的东西。 5月25日，兄弟俩开着自己做的汽车船去交作品，获得了一等奖，得到了3000元奖金。]]></content>
+      <categories>
+        <category>天才的诞生</category>
+      </categories>
+      <tags>
+        <tag>MinChe的小说</tag>
+        <tag>天才的诞生系列</tag>
+        <tag>小学</tag>
+        <tag>小说练习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode 866:回文素数]]></title>
     <url>%2F2019%2F02%2F23%2FLeetCode-866%2F</url>
     <content type="text"><![CDATA[回文素数题意 123456789求出大于或等于 N 的最小回文素数。回顾一下，如果一个数大于 1，且其因数只有 1 和它自身，那么这个数是素数。例如，2，3，5，7，11 以及 13 是素数。回顾一下，如果一个数从左往右读与从右往左读是一样的，那么这个数是回文数。例如，12321 是回文数。 示例1：12输入：6输出：7 示例2：12输入：8输出：11 示例3：123输入：13输出：101 提示： 1&lt;= N &lt;=10^8 答案肯定存在，且小于 2*10^8。 题解 最先的想法是穷举每一个比N大的数，检验回文和是否为素数，明显超时。 我的做法是穷举比N大的回文数，然后检查是否为质数。 判断质数的时候我采用先把素数表打好的办法，然后检查是否能整除素数。 代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133class Solution &#123;public: int Prime[20000];int Prime_number; int len(int x)//求x的位数 &#123; int ans=0; while(x&gt;0) &#123; ++ans;x/=10; &#125; return ans; &#125; int StringToInt(const string &amp;s) &#123; int lens=s.length();int x=0; for(int i=lens-1;i&gt;=0;--i) &#123; x*=10;x+=s[i]-'0'; &#125; return x; &#125; string travase(const string &amp;s) &#123; int lens=s.length();int x=0;string ans=""; for(int i=lens-1;i&gt;=0;--i) ans=ans+s[i]; return ans; &#125; int Make_Palindrome(int x,bool odd) &#123; if(odd) &#123; string s=to_string(x/10); if(x/10==0) s=""; s=s+to_string(x%10)+travase(s); return StringToInt(s); &#125; else &#123; string s=to_string(x); s=s+travase(s); return StringToInt(s); &#125; &#125; int power1(int n)//10的n次 &#123; int ans=1; for(int i=1;i&lt;=n;++i) ans*=10; return ans; &#125; int Number_Next(int x) &#123; int lenx=len(x); if(lenx&amp;1) &#123; int y=x/power1(lenx/2); int tmp=Make_Palindrome(y,true); if(tmp&gt;x) return tmp; ++y; if(len(y)&gt;lenx/2+1) x=Make_Palindrome(y/10,false); else x=Make_Palindrome(y,true); &#125; else &#123; int y=x/power1(lenx/2); int tmp=Make_Palindrome(y,false); if(tmp&gt;x) return tmp; ++y; if(len(y)&gt;lenx/2) x=Make_Palindrome(y,true); else x=Make_Palindrome(y,false); &#125; return x; &#125; bool Check_Palindrome(int x) &#123; string s1=to_string(x),s2=travase(s1); if(s1==s2) return true; return false; &#125; bool Check_Prime(int x) &#123; for(int i=1;i&lt;=Prime_number&amp;&amp;Prime[i]*Prime[i]&lt;=x;++i) if(x%Prime[i]==0) return false; return true; &#125; int primePalindrome(int N) &#123; if(N==1||N==2) return 2; int flag[20000]=&#123;0&#125;;Prime_number=0; for(int i=2;i&lt;15000;++i) &#123; if(!flag[i]) Prime[++Prime_number]=i; for(int j=1;j&lt;=Prime_number&amp;&amp;i*Prime[j]&lt;15000;++j) flag[i*Prime[j]]=true; &#125; if(Check_Palindrome(N)&amp;&amp;Check_Prime(N)) return N; while(true) &#123; N=Number_Next(N); if(!N&amp;1) &#123; int lenn=len(N); if(lenn&amp;1) &#123; int x=N%10+1;x=x*power1(lenn/2);x=Make_Palindrome(x,true);N=x; &#125; else &#123; int x=N%10+1; x=x*power1(lenn/2-1);x=Make_Palindrome(x,false);N=x; &#125; &#125; if(Check_Prime(N)) return N; &#125; return N; &#125;&#125;;]]></content>
@@ -20,20 +34,6 @@
       </categories>
       <tags>
         <tag>LeetCode Contest</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[天才的诞生]]></title>
-    <url>%2F2019%2F02%2F17%2Fn1%2F</url>
-    <content type="text"><![CDATA[一.一天夜晚 夜晚，梁碧月肚子痛得不行。恐怕是要生，张若志想送医院，却没有钱。只得找了一个当兽医的朋友，帮忙接生了。 在”手术室”外，张若志累晕了。醒来时，兽医朋友对他说:“恭喜。两个男孩子。 他十分高兴，但又十分悲痛。因为两个孩子，他们抚养不起。 二.灵 孩子百日了，却还没有名字。若志把大儿子取名精生，小儿取名中成。 一日，精生摆弄着家里的地唯一一台风扇。玩着玩着，“啪！” 风扇掉到了地上有些地方散了，精生并没有哭，而是动手把有些地方装好，有时候不够力就用脚踩。这一幕，张若志看见了，非常高兴。没有文化的他，只用“你太厉害了！”来形容。但是，这已经是他对别人最好的赞许了。 这是一个天才！ 三.大显身手 “这是什么？”六岁的中成说。“‘少儿制作大赛’？我们可以参加一下。” 说明上写着:5~10岁儿童可参加，无报名费，一等奖则奖金3000元。每人制作一份小制作家长只可以指导不能帮忙，可以两个儿童合作。于5月25日上交作品。 “这个不错，可以去试一试现在是五月3日。”张若志说。 次日早晨，兄弟俩去报名。 中午他们便开始思索制作的东西。 “陀螺？”中成开了个头。 “太简单了不行，必须要有电的。” “那——小汽车？” “再有难度些。” “小飞机？” “飞机做不出！那就做大汽车能开的，玩具大汽车。” 中成表示认可。 做这种汽车肯定要用电，精生在家画设计图中成去垃圾场找电动机。 五个小时过去了，精生的设计图翻了好几翻。中成还没回来。 晚上八点钟，设计图已经画好了，中成也回来了。 “这个电机不错。修理一下就能好了。”精生十分高兴。 第二天精生开始修理电动机，中成又去垃圾场寻找铁皮。 五个小时过去了，中午11点，电动机修好了，大片大片的铁皮也找来了。下午，精生在家里把铁皮做成汽车的样子，中成去垃圾场寻找木棍，方向盘，轮胎等东西。 5月15日一辆电动汽车做好了，还有十天，他们两个合伙把这辆车改造了一下，把原本的汽车改造成了又可以变成车又可以变成船的东西。 5月25日，兄弟俩开着自己做的汽车船去交作品，获得了一等奖，得到了3000元奖金。]]></content>
-      <categories>
-        <category>天才的诞生</category>
-      </categories>
-      <tags>
-        <tag>MinChe的小说</tag>
-        <tag>天才的诞生系列</tag>
-        <tag>小学</tag>
-        <tag>小说练习</tag>
       </tags>
   </entry>
   <entry>
